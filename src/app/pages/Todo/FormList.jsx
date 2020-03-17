@@ -1,7 +1,7 @@
 import React, { Component } from "react";  
 import { connect } from "react-redux";
 import { addTodo } from "./Todo.actions";
-import ItemList from "../ItemList"
+// import ItemList from "./ItemList"
 
 
 function mapDispatchToProps(dispatch) {
