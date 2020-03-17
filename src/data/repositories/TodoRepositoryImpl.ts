@@ -16,7 +16,7 @@ export default class TodoRepositoryImpl implements TodoRepository {
     "text": "Todo 2"
   }]
 
-  async GetItems(): Promise<Todo[]> {
+  async GetTodo(): Promise<Todo[]> {
     var jsonString = JSON.stringify(this.todoArr)
     var res = JSON.parse(jsonString)
     return res.map((todoItem: TodoDTO) => new Todo(todoItem.id, todoItem.text));
