@@ -5,20 +5,23 @@ class TodoDTO {
   id: number = 0;
   text: string = "";
 }
-
+let todoArr = [{
+  "id": 1,
+  "text": "Kani na Todo"
+}, {
+  "id": 2,
+  "text": "Todo 2"
+}]
 export default class TodoRepositoryImpl implements TodoRepository {
-  
-  todoArr = [{
-    "id": 1,
-    "text": "Kani na Todo"
-  }, {
-    "id": 2,
-    "text": "Todo 2"
-  }]
 
   async GetTodo(): Promise<Todo[]> {
-    var jsonString = JSON.stringify(this.todoArr)
+    var jsonString = JSON.stringify(todoArr)
     var res = JSON.parse(jsonString)
     return res.map((todoItem: TodoDTO) => new Todo(todoItem.id, todoItem.text));
+  }
+
+  async AddTodo(data:Todo){
+    todoArr.push(data)
+    console.log(todoArr)
   }
 }

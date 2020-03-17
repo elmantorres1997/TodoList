@@ -15,7 +15,13 @@ export const refreshList = async dispatch => {
         dispatch({ type: LIST_LOAD_FAILURE, error })
     }
 }
-
-export function addTodo(payload) {
-    return { type: ADD_TODO, payload }
+let todoID = 3;
+export const addTodo=payload=> {
+    var text = payload.text
+    var payload = {id: ++todoID, text}
+    console.log(payload)
+    const todoRepo = new TodoRepositoryImpl()
+    const todoService = new TodoServiceImpl(todoRepo)
+    todoService.AddTodo(payload)
+    return { type: ADD_TODO, id: todoID, payload }
 };

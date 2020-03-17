@@ -6,13 +6,16 @@ export interface TodoService {
 }
 
 export default class ItemServiceImpl implements TodoService {
-  itemRepo: TodoRepository;
+  todoRepo: TodoRepository;
 
   constructor(ir: TodoRepository) {
-    this.itemRepo = ir;
+    this.todoRepo = ir;
   }
 
   async GetTodo(): Promise<Todo[]> {
-    return this.itemRepo.GetTodo();
+    return this.todoRepo.GetTodo();
+  }
+  async AddTodo(data:Todo) {
+    this.todoRepo.AddTodo(data);
   }
 }
