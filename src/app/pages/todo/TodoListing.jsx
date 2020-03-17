@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { refreshList } from "./Todo.actions";
+import { refreshList } from "../todo/Todo.actions";
 
-const ItemList = ({ todos, refreshList }) => (
+const TodoList = ({ todos, refreshList }) => (
   <div>
     <button onClick={refreshList}>Refresh</button>
     <ul>
-      {todos.map(item => (
-        <li key={item.id}>{item.text}</li>
+      {todos.map(todo => (
+        <li key={todo.id}>{todo.text}</li>
       ))}
     </ul>
   </div>
@@ -24,4 +24,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ItemList);
+)(TodoList);

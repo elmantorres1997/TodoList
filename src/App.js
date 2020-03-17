@@ -3,9 +3,9 @@ import { Provider } from "react-redux"
 import { createStore, combineReducers, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
 
-import TodoList from "./app/pages/Todo/TodoList"
-import Formlist from "./app/pages/Todo/FormList"
-import todos from "./app/pages/Todo/Todo.reducers"
+import TodoList from "./app/pages/todo/TodoListing"
+import Formlist from "./app/pages/todo/FormList"
+import todos from "./app/pages/todo/Todo.reducers"
 
 // Setup Redux store with Thunks
 const reducers = combineReducers({ todos })
