@@ -1,12 +1,12 @@
 import React, { Component } from "react";  
 import { connect } from "react-redux";
-import { addTodo } from "./Todo.actions";
+import { addTodo, refreshList } from "./Todo.actions";
 // import ItemList from "./ItemList"
 
 
 function mapDispatchToProps(dispatch) {
   return {
-    addTodo: text => dispatch(addTodo(text))
+    addTodo: text => addTodo(text).then(dispatch(refreshList))
   };
 }
 

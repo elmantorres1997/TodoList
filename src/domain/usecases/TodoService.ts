@@ -17,7 +17,18 @@ export default class ItemServiceImpl implements TodoService {
   }
 
   async AddTodo(data:Todo) {
-    this.todoRepo.AddTodo(data);
+    
+    if (data.text.length === 0) {
+      throw "Field can't be empty!"
+    } 
+    else if (data.text.length < 4){
+      throw "Minimum of 4 characters!"
+    }
+    else {
+      this.todoRepo.AddTodo(data);
+    }
+
+    // 
   }
 
   async DeleteTodo(data:Todo){

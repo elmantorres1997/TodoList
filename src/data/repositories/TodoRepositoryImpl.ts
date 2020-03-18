@@ -26,6 +26,7 @@ export default class TodoRepositoryImpl implements TodoRepository {
 
   async AddTodo(data:Todo){
     todoArr.push(data)
+    console.log(todoArr)
   }
 
   async DeleteTodo(data:Todo) {

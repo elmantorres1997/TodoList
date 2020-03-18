@@ -17,14 +17,17 @@ export const refreshList = async dispatch => {
 }
 
 let todoID = 2;
-export const addTodo = payload => {
-    var text = payload.text
-    payload = {id: ++todoID, text , completed: false}
-    console.log(payload)
-    const todoRepo = new TodoRepositoryImpl()
-    const todoService = new TodoServiceImpl(todoRepo)
-    todoService.AddTodo(payload)
-    return { type: ADD_TODO, id: todoID, payload }
+export const addTodo = async payload => {
+    try{
+        var text = payload.text
+        payload = {id: ++todoID, text , completed: false}
+        const todoRepo = new TodoRepositoryImpl()
+        const todoService = new TodoServiceImpl(todoRepo)
+        await todoService.AddTodo(payload)
+        return { type: ADD_TODO, id: todoID, payload }
+    } catch (error){
+        alert(error)
+    }
 };
 
 export const deleteTodo = async todo => {
@@ -41,5 +44,5 @@ export const completeTodo = async id => {
     console.log(id)
     const todoRepo = new TodoRepositoryImpl()
     const todoService = new TodoServiceImpl(todoRepo)
-    todoService.CompleteTodo(id)
+    await todoService.CompleteTodo(id)
 };
