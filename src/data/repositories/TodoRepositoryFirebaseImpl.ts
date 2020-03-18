@@ -1,6 +1,7 @@
 import { Todo } from "../../domain/entities/Todo";
 import { TodoRepository } from "../../domain/repositories/TodoRepository";
 import { db } from "./firestore"
+import { database } from "firebase";
 
 class TodoDTO {
   id: number = 0;
@@ -17,27 +18,26 @@ class TodoDTO {
 //   "text": "Todo 2",
 //   "completed": true
 // }]
+
 export default class TodoRepositoryFirebaseImpl implements TodoRepository {
 
   async GetTodo(): Promise<Todo[]> {
-    let todoArr = []
-    db.collection("Todo")
-    .get()
-    .then(querySnapshot => {
-        const data = querySnapshot.docs.map(doc => doc.data());
-        todoArr = data
-        console.log(data);
-
-    });
-    
+    let todoArr =[]
+    let dataRef = db.collection("Todo")
+    var activeRef = await dataRef.get()
+    const data = activeRef.docs.map(doc=>doc.data())
+    for (let i = 0; i < data.length; i++) {
+        var jsonString = JSON.stringify(data[i])
+        var res = JSON.parse(jsonString)
+        todoArr.push(res)
+    }
     return todoArr.map((todoItem: TodoDTO) => new Todo(todoItem.id, todoItem.text, todoItem.completed));
   }
 
   async AddTodo(data:Todo){
-    // todoArr.push(data)
-    // console.log(todoArr)
-
+ 
     db.collection("Todo").doc(data.id.toString()).set({
+        id: data.id,
         text: data.text,
         completed: false,
     })
@@ -50,22 +50,15 @@ export default class TodoRepositoryFirebaseImpl implements TodoRepository {
   }
 
   async DeleteTodo(data:Todo) {
-    // var intData = parseInt(data.id.toString())
-    // for (let i = 0; i < todoArr.length; i++) {
-    //   if (intData === todoArr[i].id){
-    //     todoArr.splice(i,1);
-    //     break;
-    //   }
-    // }
+      let deleteDoc = await db.collection('Todo').doc(data.id.toString()).delete()
+      .catch(function(error) {
+        console.error("Error writing document: ", error);
+    });
   }
 
   async CompleteTodo(data:Todo){
-    // var intData = parseInt(data.toString())
-    // for (let i = 0; i < todoArr.length; i++) {
-    //   if (intData === todoArr[i].id){
-    //     todoArr[i].completed = true
-    //     break;
-    //   }
-    // }
+    let completeDoc = await db.collection("Todo").doc(data.toString()).update({
+        completed: true
+    });
   }
 }
