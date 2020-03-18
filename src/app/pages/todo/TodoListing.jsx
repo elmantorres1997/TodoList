@@ -7,8 +7,10 @@ const TodoList = ({ todos, refreshList, deleteTodo }) => (
     <button onClick={refreshList}>Refresh</button>
     <ul>
       {todos.map(todo => (
-        <li onClick={() => {deleteTodo(todo.id)}}
-        key={todo.id}>{todo.text}</li>
+        <li key={todo.id}>
+          {todo.text}
+          <button key={todo.id} onClick={() => {deleteTodo(todo.id)}}>Remove</button>
+        </li>
       ))}
     </ul>
   </div>
@@ -17,6 +19,7 @@ const TodoList = ({ todos, refreshList, deleteTodo }) => (
 const mapStateToProps = state => ({
   todos: state.todos.todos
 });
+
 function mapDispatchToProps(dispatch) {
   return {
     refreshList: () => dispatch(refreshList),

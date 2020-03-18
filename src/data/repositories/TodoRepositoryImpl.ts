@@ -28,7 +28,7 @@ export default class TodoRepositoryImpl implements TodoRepository {
 
     var intData = parseInt(data.toString())
     for (let i = 0; i < todoArr.length; i++) {
-      if (intData == todoArr[i].id){
+      if (intData === todoArr[i].id){
         todoArr.splice(i,1);
         break;
       }
