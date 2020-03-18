@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
 function mapDispatchToProps(dispatch) {
   return {
     refreshList: () => dispatch(refreshList),
-    deleteTodo: id => deleteTodo(id)
+    deleteTodo: id => deleteTodo(id).then(dispatch(refreshList))
   };
 }
 // const mapDispatchToProps = dispatch => ({
