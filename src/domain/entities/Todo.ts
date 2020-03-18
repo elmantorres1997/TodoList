@@ -9,3 +9,11 @@ export class Todo {
     this.completed = completed;
   }
 }
+
+export class Status {
+  text: string;
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}

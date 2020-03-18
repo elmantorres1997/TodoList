@@ -10,7 +10,7 @@ const TodoList = ({ todos, refreshList, deleteTodo, completeTodo }) => (
         <li key={todo.id} style={{ color: todo.completed? 'green': 'red' }}>
           {todo.text}
           {todo.completed ? "":<button key={todo.id+1} onClick={() => {completeTodo(todo.id)}}>Complete</button>}
-          <button key={todo.id+2} onClick={() => {deleteTodo(todo.id)}}>Remove</button>
+          <button key={todo.id+2} onClick={() => {deleteTodo(todo)}}>Remove</button>
         </li>
       ))}
     </ul>
@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
 function mapDispatchToProps(dispatch) {
   return {
     refreshList: () => dispatch(refreshList),
-    deleteTodo: id => deleteTodo(id).then(dispatch(refreshList)),
+    deleteTodo: todo => deleteTodo(todo).then(dispatch(refreshList)),
     completeTodo: id => completeTodo(id).then(dispatch(refreshList))
   };
 }

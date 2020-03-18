@@ -27,11 +27,11 @@ export const addTodo = payload => {
     return { type: ADD_TODO, id: todoID, payload }
 };
 
-export const deleteTodo = async id => {
-    console.log(id)
+export const deleteTodo = async todo => {
     const todoRepo = new TodoRepositoryImpl()
     const todoService = new TodoServiceImpl(todoRepo)
-    todoService.DeleteTodo(id)
+    const response = todoService.DeleteTodo(todo)
+    alert((await response).valueOf())
 };
 
 export const completeTodo = async id => {

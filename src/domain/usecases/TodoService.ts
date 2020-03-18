@@ -20,8 +20,13 @@ export default class ItemServiceImpl implements TodoService {
     this.todoRepo.AddTodo(data);
   }
 
-  async DeleteTodo(data:Todo) {
-    this.todoRepo.DeleteTodo(data);
+  async DeleteTodo(data:Todo): Promise<string>{
+    console.log(data.completed)
+    if (data.completed){
+      return "Can't delete Completed Task"
+    }else{
+      return this.todoRepo.DeleteTodo(data);
+    }
   }
 
   async CompleteTodo(data:Todo) {
