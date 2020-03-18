@@ -29,9 +29,8 @@ export default class TodoRepositoryFirebaseImpl implements TodoRepository {
         console.log(data);
 
     });
-    var jsonString = JSON.stringify(todoArr)
-    var res = JSON.parse(jsonString)
-    return res.map((todoItem: TodoDTO) => new Todo(todoItem.id, todoItem.text, todoItem.completed));
+    
+    return todoArr.map((todoItem: TodoDTO) => new Todo(todoItem.id, todoItem.text, todoItem.completed));
   }
 
   async AddTodo(data:Todo){
