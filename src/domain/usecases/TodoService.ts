@@ -21,14 +21,11 @@ export default class ItemServiceImpl implements TodoService {
   }
 
   async DeleteTodo(data:Todo){
-    try{
-      if (data.completed){
-        throw "Can't Deleted Todo"
-      }else{
-        this.todoRepo.DeleteTodo(data);
-      }
-    }catch (error){
-      alert(error)
+
+    if (data.completed){
+      throw "Can't Deleted Todo"
+    }else{
+      this.todoRepo.DeleteTodo(data);
     }
   }
 

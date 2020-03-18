@@ -28,10 +28,13 @@ export const addTodo = payload => {
 };
 
 export const deleteTodo = async todo => {
-    
-    const todoRepo = new TodoRepositoryImpl()
-    const todoService = new TodoServiceImpl(todoRepo)
-    todoService.DeleteTodo(todo)
+    try{
+        const todoRepo = new TodoRepositoryImpl()
+        const todoService = new TodoServiceImpl(todoRepo)
+        await todoService.DeleteTodo(todo)
+    } catch (error){
+        alert(error)
+    }
 };
 
 export const completeTodo = async id => {
