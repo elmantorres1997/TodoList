@@ -19,7 +19,7 @@ export const refreshList = async dispatch => {
 let todoID = 2;
 export const addTodo = payload => {
     var text = payload.text
-    payload = {id: ++todoID, text}
+    payload = {id: ++todoID, text , completed: false}
     console.log(payload)
     const todoRepo = new TodoRepositoryImpl()
     const todoService = new TodoServiceImpl(todoRepo)
@@ -32,4 +32,11 @@ export const deleteTodo = async id => {
     const todoRepo = new TodoRepositoryImpl()
     const todoService = new TodoServiceImpl(todoRepo)
     todoService.DeleteTodo(id)
+};
+
+export const completeTodo = async id => {
+    console.log(id)
+    const todoRepo = new TodoRepositoryImpl()
+    const todoService = new TodoServiceImpl(todoRepo)
+    todoService.CompleteTodo(id)
 };
