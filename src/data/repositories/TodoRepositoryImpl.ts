@@ -1,4 +1,4 @@
-import { Todo,Status } from "../../domain/entities/Todo";
+import { Todo } from "../../domain/entities/Todo";
 import { TodoRepository } from "../../domain/repositories/TodoRepository";
 
 class TodoDTO {
@@ -28,7 +28,7 @@ export default class TodoRepositoryImpl implements TodoRepository {
     todoArr.push(data)
   }
 
-  async DeleteTodo(data:Todo): Promise<string> {
+  async DeleteTodo(data:Todo) {
     var intData = parseInt(data.id.toString())
     for (let i = 0; i < todoArr.length; i++) {
       if (intData === todoArr[i].id){
@@ -36,7 +36,6 @@ export default class TodoRepositoryImpl implements TodoRepository {
         break;
       }
     }
-    return "Success"
   }
 
   async CompleteTodo(data:Todo){

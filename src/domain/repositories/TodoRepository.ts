@@ -3,6 +3,6 @@
   export interface TodoRepository {
     GetTodo(): Promise<Todo[]>;
     AddTodo(data:Todo): void;
-    DeleteTodo(data:Todo): Promise<string>;
+    DeleteTodo(data:Todo): void;
     CompleteTodo(data:Todo): void;
   }
