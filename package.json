@@ -5,6 +5,8 @@
   "dependencies": {
     "clean": "^4.0.2",
     "eslint-plugin-react": "^7.19.0",
+    "firebase": "^7.11.0",
+    "firebase-admin": "^8.10.0",
     "husky": "^4.2.3",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
