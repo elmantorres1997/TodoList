@@ -15,7 +15,12 @@ export default class ItemServiceImpl implements TodoService {
   async GetTodo(): Promise<Todo[]> {
     return this.todoRepo.GetTodo();
   }
+
   async AddTodo(data:Todo) {
     this.todoRepo.AddTodo(data);
+  }
+
+  async DeleteTodo(data:Todo) {
+    this.todoRepo.DeleteTodo(data);
   }
 }

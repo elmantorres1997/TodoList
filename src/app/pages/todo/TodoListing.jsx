@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { refreshList } from "../todo/Todo.actions";
+import { refreshList, deleteTodo} from "../todo/Todo.actions";
 
-const TodoList = ({ todos, refreshList }) => (
+const TodoList = ({ todos, refreshList, deleteTodo }) => (
   <div>
     <button onClick={refreshList}>Refresh</button>
     <ul>
       {todos.map(todo => (
-        <li key={todo.id}>{todo.text}</li>
+        <li onClick={() => {deleteTodo(todo.id)}}
+        key={todo.id}>{todo.text}</li>
       ))}
     </ul>
   </div>
@@ -16,10 +17,16 @@ const TodoList = ({ todos, refreshList }) => (
 const mapStateToProps = state => ({
   todos: state.todos.todos
 });
-
-const mapDispatchToProps = dispatch => ({
-  refreshList: () => dispatch(refreshList)
-});
+function mapDispatchToProps(dispatch) {
+  return {
+    refreshList: () => dispatch(refreshList),
+    deleteTodo: id => deleteTodo(id)
+  };
+}
+// const mapDispatchToProps = dispatch => ({
+//   refreshList: () => dispatch(refreshList),
+//   deleteTodo: () => deleteTodo(todo.id)
+// });
 
 export default connect(
   mapStateToProps,

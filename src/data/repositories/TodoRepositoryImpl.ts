@@ -22,6 +22,17 @@ export default class TodoRepositoryImpl implements TodoRepository {
 
   async AddTodo(data:Todo){
     todoArr.push(data)
+  }
+
+  async DeleteTodo(data:Todo){
+
+    var intData = parseInt(data.toString())
+    for (let i = 0; i < todoArr.length; i++) {
+      if (intData == todoArr[i].id){
+        todoArr.splice(i,1);
+        break;
+      }
+    }
     console.log(todoArr)
   }
 }

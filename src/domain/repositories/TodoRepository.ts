@@ -1,6 +1,7 @@
-import { Todo } from "../entities/Todo";
+  import { Todo } from "../entities/Todo";
 
-export interface TodoRepository {
-  GetTodo(): Promise<Todo[]>;
-  AddTodo(data:Todo): void;
-}
+  export interface TodoRepository {
+    GetTodo(): Promise<Todo[]>;
+    AddTodo(data:Todo): void;
+    DeleteTodo(data:Todo): void;
+  }

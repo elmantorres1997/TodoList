@@ -1,4 +1,4 @@
-import { ADD_TODO, LIST_LOAD_REQUEST, LIST_LOAD_SUCCESS, LIST_LOAD_FAILURE } from "./Todo.types"
+import { ADD_TODO,DELETE_TODO, LIST_LOAD_REQUEST, LIST_LOAD_SUCCESS, LIST_LOAD_FAILURE } from "./Todo.types"
 
 const initialState = {
     loading: false,
@@ -27,6 +27,13 @@ function todos(state = initialState, action = null) {
             }
         
         case ADD_TODO:
+            // copyList = state.list.slice();
+            return Object.assign({}, state, {
+                todos: state.todos.concat(action.payload)
+                ,loading: false
+                });
+
+        case DELETE_TODO:
             return Object.assign({}, state, {
                 todos: state.todos.concat(action.payload)
                 ,loading: false
