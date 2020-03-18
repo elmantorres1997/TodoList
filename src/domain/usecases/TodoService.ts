@@ -27,8 +27,6 @@ export default class ItemServiceImpl implements TodoService {
     else {
       this.todoRepo.AddTodo(data);
     }
-
-    // 
   }
 
   async DeleteTodo(data:Todo){

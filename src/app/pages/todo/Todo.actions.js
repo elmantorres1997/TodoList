@@ -1,13 +1,13 @@
 import { DELETE_TODO, ADD_TODO, LIST_LOAD_REQUEST, LIST_LOAD_SUCCESS, LIST_LOAD_FAILURE } from "./Todo.types"
 import TodoServiceImpl   from "../../../domain/usecases/TodoService"
-import TodoRepositoryImpl from "../../../data/repositories/TodoRepositoryImpl"
+import TodoRepositoryMemoryImpl from "../../../data/repositories/TodoRepositoryMemoryImpl"
 
 
 export const refreshList = async dispatch => {
     dispatch({ type: LIST_LOAD_REQUEST })
 
     try {
-        const todoRepo = new TodoRepositoryImpl()
+        const todoRepo = new TodoRepositoryMemoryImpl()
         const todoService = new TodoServiceImpl(todoRepo)
         const todos = await todoService.GetTodo()
         dispatch({ type: LIST_LOAD_SUCCESS, payload: todos })
@@ -21,7 +21,7 @@ export const addTodo = async payload => {
     try{
         var text = payload.text
         payload = {id: ++todoID, text , completed: false}
-        const todoRepo = new TodoRepositoryImpl()
+        const todoRepo = new TodoRepositoryMemoryImpl()
         const todoService = new TodoServiceImpl(todoRepo)
         await todoService.AddTodo(payload)
         return { type: ADD_TODO, id: todoID, payload }
@@ -32,7 +32,7 @@ export const addTodo = async payload => {
 
 export const deleteTodo = async todo => {
     try{
-        const todoRepo = new TodoRepositoryImpl()
+        const todoRepo = new TodoRepositoryMemoryImpl()
         const todoService = new TodoServiceImpl(todoRepo)
         await todoService.DeleteTodo(todo)
     } catch (error){
@@ -42,7 +42,7 @@ export const deleteTodo = async todo => {
 
 export const completeTodo = async id => {
     console.log(id)
-    const todoRepo = new TodoRepositoryImpl()
+    const todoRepo = new TodoRepositoryMemoryImpl()
     const todoService = new TodoServiceImpl(todoRepo)
     await todoService.CompleteTodo(id)
 };

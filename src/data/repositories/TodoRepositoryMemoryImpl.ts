@@ -16,7 +16,7 @@ let todoArr = [{
   "text": "Todo 2",
   "completed": true
 }]
-export default class TodoRepositoryImpl implements TodoRepository {
+export default class TodoRepositoryMemoryImpl implements TodoRepository {
 
   async GetTodo(): Promise<Todo[]> {
     var jsonString = JSON.stringify(todoArr)
