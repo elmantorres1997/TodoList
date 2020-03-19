@@ -48,3 +48,15 @@ export const completeTodo = async id => {
     const todoService = new TodoServiceImpl(todoRepo)
     await todoService.CompleteTodo(id)
 };
+
+export const signupTodo = async userData => {
+    const todoRepo = new TodoRepositoryFirebaseImpl()
+    const todoService = new TodoServiceImpl(todoRepo)
+    await todoService.SignupTodo(userData)
+};
+
+export const loginTodo = async userData => {
+    const todoRepo = new TodoRepositoryFirebaseImpl()
+    const todoService = new TodoServiceImpl(todoRepo)
+    await todoService.LoginTodo(userData)
+};

@@ -1,8 +1,6 @@
 import React, { Component } from "react";  
 import { connect } from "react-redux";
 import { addTodo, refreshList } from "./Todo.actions";
-// import ItemList from "./ItemList"
-
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -60,39 +58,4 @@ const FormList = connect(
   mapDispatchToProps
 )(ConnectedForm);
 
-export default FormList;
-
-// export default class FormList extends Component{
-
-//   state = {
-//     text: ""
-//   };
-
-//   handleChange  = (event) => {
-//     this.setState({
-//       [event.target.name]: event.target.value
-//     });
-//   };
-//   render(){
-//     return (
-//       <div>
-//         <form onSubmit={this.handleSubmit}>
-//             <input
-//               name = "text"
-//               value = {this.state.text}
-//               onChange = {this.handleChange}
-//               placeholder = "Todo"
-//             />
-//             <button onClick={handleSubmit}>Add Todo</button>
-//         </form>
-//       </div>
-//     );
-//   }
-// }
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(ItemList);
-
-  
+export default FormList;  

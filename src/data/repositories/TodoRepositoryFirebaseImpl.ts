@@ -1,7 +1,6 @@
-import { Todo } from "../../domain/entities/Todo";
+import { Todo , User } from "../../domain/entities/Todo";
 import { TodoRepository } from "../../domain/repositories/TodoRepository";
-import { db } from "./firestore"
-import { database } from "firebase";
+import { firebaseApp } from "./firestore"
 
 class TodoDTO {
   id: number = 0;
@@ -9,17 +8,37 @@ class TodoDTO {
   completed: boolean = false;
 }
 
-// let todoArr = [{
-//   "id": 1,
-//   "text": "Kani na Todo",
-//   "completed": false
-// }, {
-//   "id": 2,
-//   "text": "Todo 2",
-//   "completed": true
-// }]
+const db = firebaseApp.firestore();
 
 export default class TodoRepositoryFirebaseImpl implements TodoRepository {
+
+  async SignupTodo(userData:User) {
+    await firebaseApp.auth().createUserWithEmailAndPassword(userData.username, userData.password).then(function() {
+      console.log("Document successfully written!");
+      }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode + " " + errorMessage)
+    });
+  }
+
+  async LoginTodo(userData:User){
+    await firebaseApp.auth().signInWithEmailAndPassword(userData.username, userData.password).then(function() {
+      console.log("Successfully Logged In!");
+      }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.error(errorCode + " " + errorMessage)
+    });
+  }
+
+  async LogoutTodo(){
+    await firebaseApp.auth().signOut().then(function() {
+      console.log('success')
+    }).catch(function(error) {
+      console.log(error)
+    });
+  }
 
   async GetTodo(): Promise<Todo[]> {
     let todoArr =[]
@@ -35,7 +54,6 @@ export default class TodoRepositoryFirebaseImpl implements TodoRepository {
   }
 
   async AddTodo(data:Todo){
- 
     db.collection("Todo").doc(data.id.toString()).set({
         id: data.id,
         text: data.text,
@@ -50,15 +68,15 @@ export default class TodoRepositoryFirebaseImpl implements TodoRepository {
   }
 
   async DeleteTodo(data:Todo) {
-      let deleteDoc = await db.collection('Todo').doc(data.id.toString()).delete()
-      .catch(function(error) {
-        console.error("Error writing document: ", error);
+    await db.collection('Todo').doc(data.id.toString()).delete()
+    .catch(function(error) {
+      console.error("Error writing document: ", error);
     });
   }
 
   async CompleteTodo(data:Todo){
-    let completeDoc = await db.collection("Todo").doc(data.toString()).update({
+    await db.collection("Todo").doc(data.toString()).update({
         completed: true
-    });
+    })
   }
 }

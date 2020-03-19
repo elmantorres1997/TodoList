@@ -1,4 +1,4 @@
-import { Todo } from "../entities/Todo";
+import { Todo , User } from "../entities/Todo";
 import { TodoRepository } from "../repositories/TodoRepository";
 
 export interface TodoService {
@@ -40,5 +40,17 @@ export default class ItemServiceImpl implements TodoService {
 
   async CompleteTodo(data:Todo) {
     this.todoRepo.CompleteTodo(data);
+  }
+
+  async SignupTodo(userData:User) {
+    this.todoRepo.SignupTodo(userData);
+  }
+
+  async LoginTodo(userData:User) {
+    this.todoRepo.LoginTodo(userData);
+  }
+
+  async LogoutTodo() {
+    this.todoRepo.LogoutTodo();
   }
 }
