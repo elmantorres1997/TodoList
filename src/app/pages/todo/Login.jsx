@@ -1,10 +1,10 @@
 import React, { Component } from "react";  
 import { connect } from "react-redux";
-import { loginTodo } from "./Todo.actions";
+import { login } from "./Todo.actions";
 
 function mapDispatchToProps(dispatch) {
     return {
-        loginTodo: (username,password) => loginTodo(username,password)
+        login: (username,password) => login(username,password)
     };
   }
 
@@ -26,7 +26,7 @@ class LogIn extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { username , password  } = this.state;
-    this.props.loginTodo({ username , password });
+    this.props.login({ username , password });
     this.setState({ username: "", password: "" });
   }
   render() {

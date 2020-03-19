@@ -6,7 +6,7 @@ const db = firebaseApp.firestore();
 
 export default class AuthRepositoryFirebaseImpl implements AuthRepository {
 
-  async SignupTodo(userData:User) {
+  async Signup(userData:User) {
     await firebaseApp.auth().createUserWithEmailAndPassword(userData.username, userData.password).then(function() {
       console.log("Document successfully written!");
       }).catch(function(error) {
@@ -16,7 +16,7 @@ export default class AuthRepositoryFirebaseImpl implements AuthRepository {
     });
   }
 
-  async LoginTodo(userData:User){
+  async Login(userData:User){
     await firebaseApp.auth().signInWithEmailAndPassword(userData.username, userData.password).then(function() {
       console.log("Successfully Logged In!");
       }).catch(function(error) {
@@ -26,7 +26,7 @@ export default class AuthRepositoryFirebaseImpl implements AuthRepository {
     });
   }
 
-  async LogoutTodo(){
+  async Logout(){
     await firebaseApp.auth().signOut().then(function() {
       console.log('success')
     }).catch(function(error) {

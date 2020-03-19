@@ -2,9 +2,9 @@ import { User } from "../entities/User";
 import { AuthRepository } from "../repositories/AuthRepository";
 
 export interface AuthService {
-    SignupTodo(data:User): void;
-    LoginTodo(data:User): void;
-    LogoutTodo(): void;
+    Signup(data:User): void;
+    Login(data:User): void;
+    Logout(): void;
 }
 
 export default class AuthServiceImpl implements AuthService {
@@ -13,15 +13,15 @@ export default class AuthServiceImpl implements AuthService {
   constructor(ir: AuthRepository) {
     this.todoRepo = ir;
   }
-  async SignupTodo(userData:User) {
-    this.todoRepo.SignupTodo(userData);
+  async Signup(userData:User) {
+    this.todoRepo.Signup(userData);
   }
 
-  async LoginTodo(userData:User) {
-    this.todoRepo.LoginTodo(userData);
+  async Login(userData:User) {
+    this.todoRepo.Login(userData);
   }
 
-  async LogoutTodo() {
-    this.todoRepo.LogoutTodo();
+  async Logout() {
+    this.todoRepo.Logout();
   }
 }

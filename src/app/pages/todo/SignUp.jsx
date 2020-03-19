@@ -1,10 +1,10 @@
 import React, { Component } from "react";  
 import { connect } from "react-redux";
-import { signupTodo } from "./Todo.actions";
+import { signup } from "./Todo.actions";
 
 function mapDispatchToProps(dispatch) {
     return {
-        signupTodo: (username,password) => signupTodo(username,password)
+        signup: (username,password) => signup(username,password)
     };
   }
 
@@ -26,7 +26,7 @@ class SignUp extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { username , password  } = this.state;
-    this.props.signupTodo({ username , password });
+    this.props.signup({ username , password });
     this.setState({ username: "", password: "" });
   }
   render() {

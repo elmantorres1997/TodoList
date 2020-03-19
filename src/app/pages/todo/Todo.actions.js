@@ -51,14 +51,14 @@ export const completeTodo = async id => {
     await todoService.CompleteTodo(id)
 };
 
-export const signupTodo = async userData => {
+export const signup = async userData => {
     const AuthRepo = new AuthRepositoryFirebaseImpl()
     const AuthService = new AuthServiceImpl(AuthRepo)
-    await AuthService.SignupTodo(userData)
+    await AuthService.Signup(userData)
 };
 
-export const loginTodo = async userData => {
+export const login = async userData => {
     const AuthRepo = new AuthRepositoryFirebaseImpl()
     const AuthService = new AuthServiceImpl(AuthRepo)
-    await AuthService.LoginTodo(userData)
+    await AuthService.Login(userData)
 };
