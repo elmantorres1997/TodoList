@@ -1,6 +1,8 @@
 import { DELETE_TODO, ADD_TODO, LIST_LOAD_REQUEST, LIST_LOAD_SUCCESS, LIST_LOAD_FAILURE } from "./Todo.types"
 import TodoServiceImpl   from "../../../domain/usecases/TodoService"
+import AuthServiceImpl   from "../../../domain/usecases/AuthService"
 import TodoRepositoryFirebaseImpl from "../../../data/repositories/TodoRepositoryFirebaseImpl"
+import AuthRepositoryFirebaseImpl from "../../../data/repositories/AuthRepositoryFirebaseImpl"
 
 export const refreshList = async dispatch => {
     dispatch({ type: LIST_LOAD_REQUEST })
@@ -50,13 +52,13 @@ export const completeTodo = async id => {
 };
 
 export const signupTodo = async userData => {
-    const todoRepo = new TodoRepositoryFirebaseImpl()
-    const todoService = new TodoServiceImpl(todoRepo)
-    await todoService.SignupTodo(userData)
+    const AuthRepo = new AuthRepositoryFirebaseImpl()
+    const AuthService = new AuthServiceImpl(AuthRepo)
+    await AuthService.SignupTodo(userData)
 };
 
 export const loginTodo = async userData => {
-    const todoRepo = new TodoRepositoryFirebaseImpl()
-    const todoService = new TodoServiceImpl(todoRepo)
-    await todoService.LoginTodo(userData)
+    const AuthRepo = new AuthRepositoryFirebaseImpl()
+    const AuthService = new AuthServiceImpl(AuthRepo)
+    await AuthService.LoginTodo(userData)
 };

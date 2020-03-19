@@ -1,4 +1,4 @@
-import { Todo , User } from "../../domain/entities/Todo";
+import { Todo } from "../../domain/entities/Todo";
 import { TodoRepository } from "../../domain/repositories/TodoRepository";
 
 class TodoDTO {
@@ -17,32 +17,6 @@ let todoArr = [{
   "completed": true
 }]
 export default class TodoRepositoryMemoryImpl implements TodoRepository {
-
-  async SignupTodo(userData:User) {
-  //   await firebaseApp.auth().createUserWithEmailAndPassword(userData.email, userData.password).catch(function(error) {
-  //   var errorCode = error.code;
-  //   var errorMessage = error.message;
-  //   console.error(errorCode + " " + errorMessage)
-  // });
-}
-
-async LoginTodo(userData:User){
-  // await firebaseApp.auth().signInWithEmailAndPassword(userData.email, userData.password).catch(function(error) {
-  //   var errorCode = error.code;
-  //   var errorMessage = error.message;
-  //   console.error(errorCode + " " + errorMessage)
-  // });
-}
-
-async LogoutTodo(){
-  // await firebaseApp.auth().signOut().then(function() {
-  //   console.log('success')
-  // }).catch(function(error) {
-  //   console.log(error)
-  // });
-}
-
-
   async GetTodo(): Promise<Todo[]> {
     var jsonString = JSON.stringify(todoArr)
     var res = JSON.parse(jsonString)
