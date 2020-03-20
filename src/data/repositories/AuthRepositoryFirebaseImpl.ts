@@ -1,4 +1,4 @@
-import { User, currentUser } from "../../domain/entities/User";
+import { User } from "../../domain/entities/User";
 import { AuthRepository } from "../../domain/repositories/AuthRepository";
 import { firebaseApp } from "./firestore"
 
@@ -21,7 +21,7 @@ export default class AuthRepositoryFirebaseImpl implements AuthRepository {
       var errorMessage = error.message;
       console.error(errorCode + " " + errorMessage)
     });
-    var user = await firebaseApp.auth().currentUser;
+    var user = firebaseApp.auth().currentUser;
     if (user) {
       return "LogedIn"
     } else {

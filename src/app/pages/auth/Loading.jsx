@@ -14,6 +14,7 @@ class PageLoader extends Component {
             <div className = "loader-contatiner">
                 <div className = "loader">
                     <img src={LoaderGif}/>
+                    <h1 style={{marginLeft:"15%"}}>LOADING...</h1>
                 </div>
             </div>
         )

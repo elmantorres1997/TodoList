@@ -1,20 +1,26 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Redirect } from 'react-router-dom';
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { Redirect } from "react-router-dom"
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
     }
 }
 
 class AuthComponent extends Component {
-    render(){
-    const { auth } = this.props;
-    if (!auth.uid) {return (<Redirect to='/login' />)}
-    return(<div></div>)
+    render() {
+        const { auth } = this.props
+        if (!auth.uid) {
+            return <Redirect to="/login" />
+        }
+        return <div></div>
     }
 }
 
-export {AuthComponent}
+AuthComponent.propTypes = {
+    auth: PropTypes.object,
+}
+
+export { AuthComponent }
 export default connect(mapStateToProps, null)(AuthComponent)

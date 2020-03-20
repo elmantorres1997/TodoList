@@ -1,4 +1,4 @@
-import { User,currentUser } from "../entities/User";
+import { User } from "../entities/User";
 import { AuthRepository } from "../repositories/AuthRepository";
 
 export interface AuthService {

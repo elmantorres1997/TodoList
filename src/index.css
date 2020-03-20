@@ -15,7 +15,7 @@ code {
 }
 
 .loader-containter{
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -24,8 +24,14 @@ code {
 }
 
 .loader{
-  left: 45%;
+  left: 44%;
   top: 30%;
   z-index: 10000;
   position: absolute;
+  background-color: white;
+}
+
+.form {
+  width: '100%';
+  margin-top: 10%;
 }
