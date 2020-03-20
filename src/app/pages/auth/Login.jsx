@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link, Redirect } from 'react-router-dom';
 import { login } from "../auth/Auth.action";
 import { firebaseApp } from "../../../data/repositories/firestore"
+import PageLoader from "./Loading"
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -12,7 +13,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    loading: state.auth.loading
   }
 }
 
@@ -71,6 +73,7 @@ class LogIn extends Component {
             <button type="submit">Login</button>
           </div>
         </form>
+        <PageLoader/>
       </div>
     );
   }

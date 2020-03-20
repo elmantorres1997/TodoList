@@ -15,6 +15,7 @@ export const signup = (userData) => {
 
 export const login = (userData) => {
     return (dispatch) => {
+        dispatch({type: types.LOGIN_USER_REQUEST})
         const AuthRepo = new AuthRepositoryFirebaseImpl()
         const AuthService = new AuthServiceImpl(AuthRepo)
         AuthService.Login(userData).then(function(value) {
