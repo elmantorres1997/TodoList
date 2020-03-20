@@ -1,25 +1,19 @@
-import React, { Component } from "react";  
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signout } from "../auth/Auth.action";
-import { Redirect } from 'react-router-dom';
+import AuthComponent from './AuthComponent'
 
-const mapStateToProps =  (state) => {
-  return {
-    auth: state.firebase.auth
-  }
-}
 const mapDispatchToProps = (dispatch) => {
-  return{
+  return {
     signout: () => dispatch(signout())
   }
 }
 
 class HomePage extends Component {
-  render(){
-    const { auth } = this.props;
-    if (!auth.uid) return (<Redirect to='/login'/>)
-    return(
+  render() {
+    return (
       <div>
+        <AuthComponent />
         <div>
           <label>WELCOME TO HOME PAGE</label>
         </div>
@@ -27,8 +21,9 @@ class HomePage extends Component {
           <button onClick={this.props.signout}>Log Out</button>
         </div>
       </div>
+
     )
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(HomePage)
+export default connect(null, mapDispatchToProps)(HomePage)

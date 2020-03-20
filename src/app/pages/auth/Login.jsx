@@ -1,4 +1,4 @@
-import React, { Component } from "react";  
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, Redirect } from 'react-router-dom';
 import { login } from "../auth/Auth.action";
@@ -6,11 +6,11 @@ import { firebaseApp } from "../../../data/repositories/firestore"
 
 const mapDispatchToProps = dispatch => {
   return {
-  login: (username,password) => dispatch(login(username,password))
+    login: (username, password) => dispatch(login(username, password))
   }
 };
 
-const mapStateToProps =  (state) => {
+const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth
   }
@@ -33,14 +33,14 @@ class LogIn extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { username , password  } = this.state;
-    this.props.login({ username , password });
+    const { username, password } = this.state;
+    this.props.login({ username, password });
     this.setState({ username: "", password: "" });
   }
   render() {
-    const { username , password } = this.state;
+    const { username, password } = this.state;
     const { auth } = this.props;
-    if (auth.uid) return (<Redirect to='/'/>)
+    if (auth.uid) return (<Redirect to='/' />)
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -49,24 +49,24 @@ class LogIn extends Component {
               <h1 htmlFor="title">Login</h1>
             </div>
             <div>
-                <label>Username: </label>
-                <input
-                    type="email"
-                    id="username"
-                    value={username}
-                    placeholder="Username"
-                    onChange={this.handleChange}
-                />
+              <label>Username: </label>
+              <input
+                type="email"
+                id="username"
+                value={username}
+                placeholder="Username"
+                onChange={this.handleChange}
+              />
             </div>
             <div>
-                <label>Password:  </label>
-                <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    placeholder="Password"
-                    onChange={this.handleChange}
-                />
+              <label>Password:  </label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                placeholder="Password"
+                onChange={this.handleChange}
+              />
             </div>
             <button type="submit">Login</button>
           </div>
