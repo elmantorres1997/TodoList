@@ -18,7 +18,12 @@ export default class AuthServiceImpl implements AuthService {
   }
 
   async Login(userData:User) {
-    this.todoRepo.Login(userData);
+    if (userData){
+      this.todoRepo.Login(userData);
+    }else{
+      throw "error"
+    }
+    
   }
 
   async Logout() {

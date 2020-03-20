@@ -1,14 +1,12 @@
 import React, { Component } from "react";  
 import { connect } from "react-redux";
-import { login } from "./Todo.actions";
+import { signup } from "../auth/Auth.action";
 
-function mapDispatchToProps(dispatch) {
-    return {
-        login: (username,password) => login(username,password)
-    };
-  }
+const mapDispatchToProps = dispatch => ({
+  signup: (username,password) => dispatch(signup(username,password))
+});
 
-class LogIn extends Component {
+class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +24,7 @@ class LogIn extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { username , password  } = this.state;
-    this.props.login({ username , password });
+    this.props.signup({ username , password });
     this.setState({ username: "", password: "" });
   }
   render() {
@@ -37,7 +35,7 @@ class LogIn extends Component {
         <form onSubmit={this.handleSubmit}>
           <div>
             <div>
-              <h1 htmlFor="title">Login</h1>
+              <h1 htmlFor="title">Sign UP</h1>
             </div>
             <div>
                 <label>Username: </label>
@@ -50,7 +48,7 @@ class LogIn extends Component {
                 />
             </div>
             <div>
-                <label>Password:  </label>
+                <label>Password: </label>
                 <input
                     type="password"
                     id="password"
@@ -60,7 +58,7 @@ class LogIn extends Component {
                 />
             </div>
             
-            <button type="submit">Login</button>
+            <button type="submit">SAVE</button>
           </div>
         </form>
       </div>
@@ -68,9 +66,9 @@ class LogIn extends Component {
   }
 }
 
-const SignInForm = connect(
+const SignUpForm = connect(
   null,
   mapDispatchToProps,
-)(LogIn);
+)(SignUp);
 
-export default SignInForm;  
+export default SignUpForm;  
