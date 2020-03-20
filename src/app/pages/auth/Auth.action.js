@@ -13,20 +13,19 @@ export const signup = (userData) => {
     }
 };
 
-export const login =  (userData) => {
+export const login = (userData) => {
     return (dispatch) => {
         const AuthRepo = new AuthRepositoryFirebaseImpl()
         const AuthService = new AuthServiceImpl(AuthRepo)
-        AuthService.Login(userData)
-        .then(function() {
-            firebaseApp.auth().onAuthStateChanged(function(user) {
-                if (user != null) {
+        AuthService.Login(userData).then(function(value) {
+                console.log(value)
+                if (value === 'LogedIn') {
                     dispatch({type: types.LOGIN_USER_SUCCESS})
                 } else {
                     dispatch({type: types.LOGIN_USER_ERROR, payload:"Login Error"  })
                 }
-              });   
-            })
+            }
+        )
     }
 };
 

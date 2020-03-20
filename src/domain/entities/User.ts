@@ -7,3 +7,11 @@ export class User {
     this.password = password;
     }
 }
+
+export class currentUser {
+    current: string;
+
+    constructor(current: string) {
+        this.current = current;
+    }
+}

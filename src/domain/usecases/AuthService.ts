@@ -1,9 +1,9 @@
-import { User } from "../entities/User";
+import { User,currentUser } from "../entities/User";
 import { AuthRepository } from "../repositories/AuthRepository";
 
 export interface AuthService {
     Signup(data:User): void;
-    Login(data:User): void;
+    Login(data:User): Promise<string> ;
     Logout(): void;
 }
 
@@ -17,9 +17,9 @@ export default class AuthServiceImpl implements AuthService {
     this.todoRepo.Signup(userData);
   }
 
-  async Login(userData:User) {
+  async Login(userData:User): Promise<string> {
     if (userData){
-      this.todoRepo.Login(userData);
+      return this.todoRepo.Login(userData);
     }else{
       throw "error"
     }
